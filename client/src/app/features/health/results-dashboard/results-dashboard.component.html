@@ -1,0 +1,109 @@
+<ng-container *ngIf="healthService.currentMeasurement() as measurement; else noData">
+  <ng-container *ngIf="measurement.result as result; else calcPending">
+    <div class="results-grid">
+      <!-- BMI Card -->
+      <mat-card class="metric-card elevation-z2">
+        <div class="metric-header">
+          <div class="icon-wrapper">
+            <mat-icon color="primary">monitor_weight</mat-icon>
+          </div>
+          <span class="metric-title">Body Mass Index</span>
+        </div>
+        <mat-card-content>
+          <div class="metric-value">{{ result.bmi }}</div>
+          <div class="metric-classification">
+            <span class="badge" [ngClass]="getBadgeClass(result.bmi_classification)">
+              {{ result.bmi_classification }}
+            </span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- IBW Card -->
+      <mat-card class="metric-card elevation-z2">
+        <div class="metric-header">
+          <div class="icon-wrapper">
+            <mat-icon color="primary">track_changes</mat-icon>
+          </div>
+          <span class="metric-title">Ideal Body Weight</span>
+        </div>
+        <mat-card-content>
+          <div class="metric-value">{{ result.ibw_kg }} <span class="unit">kg</span></div>
+          <div class="metric-classification">
+            <span class="badge badge-neutral">Devine Formula</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- WtHR Card -->
+      <mat-card class="metric-card elevation-z2" *ngIf="result.wthr !== null">
+        <div class="metric-header">
+          <div class="icon-wrapper">
+            <mat-icon color="primary">accessibility</mat-icon>
+          </div>
+          <span class="metric-title">Waist-to-Height Ratio</span>
+        </div>
+        <mat-card-content>
+          <div class="metric-value">{{ result.wthr }}</div>
+          <div class="metric-classification">
+            <span class="badge" [ngClass]="getBadgeClass(result.wthr_classification)">
+              {{ result.wthr_classification }}
+            </span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- LBM Card -->
+      <mat-card class="metric-card elevation-z2">
+        <div class="metric-header">
+          <div class="icon-wrapper">
+            <mat-icon color="primary">fitness_center</mat-icon>
+          </div>
+          <span class="metric-title">Lean Body Mass</span>
+        </div>
+        <mat-card-content>
+          <div class="metric-value">{{ result.lbm_kg }} <span class="unit">kg</span></div>
+          <div class="metric-classification">
+            <span class="badge badge-neutral">Boer Formula</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- BFP Card -->
+      <mat-card class="metric-card elevation-z2">
+        <div class="metric-header">
+          <div class="icon-wrapper">
+            <mat-icon color="primary">pie_chart</mat-icon>
+          </div>
+          <span class="metric-title">Body Fat Percentage</span>
+        </div>
+        <mat-card-content>
+          <div class="metric-value">{{ result.bfp }}<span class="unit">%</span></div>
+          <div class="metric-classification">
+            <span class="badge" [ngClass]="getBadgeClass(result.bfp_classification)">
+              {{ result.bfp_classification }}
+            </span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </ng-container>
+
+  <ng-template #calcPending>
+    <div class="empty-state">
+      <mat-icon>pending</mat-icon>
+      <h3>Calculating...</h3>
+      <p>Your results are being processed.</p>
+    </div>
+  </ng-template>
+</ng-container>
+
+<ng-template #noData>
+  <div class="empty-state">
+    <div class="empty-icon-wrapper">
+      <mat-icon>query_stats</mat-icon>
+    </div>
+    <h3>No Results Yet</h3>
+    <p>Fill out the form on the left to see your health metrics.</p>
+  </div>
+</ng-template>

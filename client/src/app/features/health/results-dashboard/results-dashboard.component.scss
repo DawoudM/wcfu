@@ -1,0 +1,155 @@
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.metric-card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--mat-sys-elevation-level3);
+  }
+
+  .metric-header {
+    display: flex;
+    align-items: center;
+    padding: 16px 16px 0;
+    gap: 12px;
+
+    .icon-wrapper {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background-color: var(--mat-sys-primary-container);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      mat-icon {
+        color: var(--mat-sys-on-primary-container);
+      }
+    }
+
+    .metric-title {
+      font-weight: 500;
+      color: var(--mat-sys-on-surface-variant);
+      font-size: 0.875rem;
+    }
+  }
+
+  mat-card-content {
+    padding: 16px;
+    
+    .metric-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--mat-sys-on-surface);
+      line-height: 1.2;
+      margin-bottom: 12px;
+      
+      .unit {
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--mat-sys-on-surface-variant);
+        margin-left: 4px;
+      }
+    }
+
+    .metric-classification {
+      .badge {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 16px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+
+        &.badge-success {
+          background-color: #e6f4ea;
+          color: #137333;
+        }
+
+        &.badge-warning {
+          background-color: #fef7e0;
+          color: #b06000;
+        }
+
+        &.badge-error {
+          background-color: #fce8e6;
+          color: #c5221f;
+        }
+
+        &.badge-neutral {
+          background-color: var(--mat-sys-surface-variant);
+          color: var(--mat-sys-on-surface-variant);
+        }
+      }
+    }
+  }
+}
+
+/* Dark theme overrides for badges */
+::ng-deep .dark-theme {
+  .metric-card .metric-classification .badge {
+    &.badge-success {
+      background-color: rgba(19, 115, 51, 0.3);
+      color: #81c995;
+    }
+    &.badge-warning {
+      background-color: rgba(176, 96, 0, 0.3);
+      color: #fde293;
+    }
+    &.badge-error {
+      background-color: rgba(197, 34, 31, 0.3);
+      color: #f28b82;
+    }
+  }
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 24px;
+  text-align: center;
+  background-color: var(--mat-sys-surface);
+  border-radius: 16px;
+  border: 2px dashed var(--mat-sys-outline-variant);
+
+  .empty-icon-wrapper {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: var(--mat-sys-surface-variant);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+    
+    mat-icon {
+      font-size: 32px;
+      width: 32px;
+      height: 32px;
+      color: var(--mat-sys-on-surface-variant);
+    }
+  }
+
+  h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--mat-sys-on-surface);
+  }
+
+  p {
+    margin: 0;
+    color: var(--mat-sys-on-surface-variant);
+    max-width: 300px;
+  }
+}

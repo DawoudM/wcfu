@@ -1,0 +1,106 @@
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  
+  @media (min-width: 992px) {
+    grid-template-columns: 400px 1fr;
+    align-items: flex-start;
+  }
+}
+
+.form-card {
+  border-radius: 16px;
+  padding: 16px;
+}
+
+mat-card-header {
+  margin-bottom: 24px;
+
+  .header-image {
+    width: 48px;
+    height: 48px;
+    background-color: var(--mat-sys-primary-container);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    mat-icon {
+      color: var(--mat-sys-on-primary-container);
+    }
+  }
+
+  mat-card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+}
+
+.measurement-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  
+  .half-width {
+    flex: 1;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.form-actions {
+  margin-top: 16px;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 24px 0;
+  font-size: 1rem;
+  border-radius: 8px;
+}
+
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 0;
+  color: var(--mat-sys-on-surface-variant);
+  
+  p {
+    margin-top: 16px;
+  }
+}
+
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(0,0,0,.1);
+  border-radius: 50%;
+  border-top-color: var(--mat-sys-primary);
+  animation: spin 1s ease-in-out infinite;
+  
+  &.large-spinner {
+    width: 40px;
+    height: 40px;
+    border-width: 4px;
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+::ng-deep .dark-theme .spinner {
+  border: 3px solid rgba(255,255,255,.1);
+  border-top-color: var(--mat-sys-primary);
+}
